@@ -1,0 +1,88 @@
+# Air Quality Tracker
+
+## Project Goal
+The goal of this project is to build a modern web application that allows users to monitor air quality data for different cities around the world.  
+The application displays live PM10 and PM2.5 pollution values, provides a short air quality assessment, supports searching global locations, allows users to save favorite cities, and includes a comparison feature between two selected locations.
+
+The application focuses on:
+- Working with REST APIs
+- Handling asynchronous data
+- Managing application state
+- Implementing routing and navigation
+- Using modern Angular Standalone Components
+- Persisting data using a mock backend (JSON Server)
+- Building a clean, responsive, user-friendly UI
+
+
+## Technologies Used
+- **Angular 17**
+- **TypeScript**
+- **HTML / CSS**
+- **Open-Meteo Air Quality API**
+- **JSON Server (for Favorites storage)**
+
+
+## Project Structure
+
+air-quality-tracker/
+│
+├── src/
+│ ├── app/
+│ │ ├── pages/
+│ │ │ ├── home/ -> Main page, shows air quality for searched or detected city
+│ │ │ ├── favorites/ -> Displays saved favorite locations
+│ │ │ ├── compare/ -> Compares PM levels of two cities
+│ │ │
+│ │ ├── services/
+│ │ │ ├── air-quality/ -> Service that calls Open-Meteo API
+│ │ │ ├── favorites/ -> Handles saving/removing favorites via JSON server
+│ │ │ ├── geolocation/ -> Gets device location
+│ │ │
+│ │ ├── app.routes.ts -> Defines application routes
+│ │
+│ ├── assets/ -> Static assets
+│ ├── main.ts -> Angular bootstrap
+│
+air-quality-tracker/
+│
+├── src/
+│ ├── app/
+│ │ ├── pages/
+│ │ │ ├── home/ -> Main page, shows air quality for searched or detected city
+│ │ │ ├── favorites/ -> Displays saved favorite locations
+│ │ │ ├── compare/ -> Compares PM levels of two cities
+│ │ │
+│ │ ├── services/
+│ │ │ ├── air-quality/ -> Service that calls Open-Meteo API
+│ │ │ ├── favorites/ -> Handles saving/removing favorites via JSON server
+│ │ │ ├── geolocation/ -> Gets device location
+│ │ │
+│ │ ├── app.routes.ts -> Defines application routes
+│ │
+│ ├── assets/ -> Static assets
+│ ├── main.ts -> Angular bootstrap
+
+
+## Features
+
+- Search any city in the world
+- Detect user's current location
+- Show PM10 and PM2.5 concentration
+- Show last updated timestamp
+- Air quality status & advice
+- Trend sparkline chart
+- Save / remove favorite locations
+- Open favorite on Home
+- Compare two cities’ air quality
+
+## How to Run
+
+1. Install dependencies
+npm install
+
+2. Start backend (Favorites storage)
+json-server --watch db.json --port 5000
+
+3. Start Angular app
+ng serve
+http://localhost:4200
