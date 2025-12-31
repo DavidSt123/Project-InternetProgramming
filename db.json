@@ -1,0 +1,16 @@
+{
+  "favorites": [
+    {
+      "id": "16bb",
+      "label": "Skopje",
+      "latitude": 41.9981,
+      "longitude": 21.4254
+    },
+    {
+      "id": "6867",
+      "label": "Kavadarci, Macedonia",
+      "latitude": 41.43306,
+      "longitude": 22.01194
+    }
+  ]
+}

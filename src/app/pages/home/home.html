@@ -1,0 +1,204 @@
+<div class="page">
+  <h1>Air Quality — {{ cityName }}</h1>
+
+  <!-- 🔎 Search + use my location -->
+  <form
+    class="search-any-city"
+    (submit)="onSearchCity(searchInput.value); $event.preventDefault()"
+  >
+    <label for="search-input">Search any city:</label>
+    <input
+      id="search-input"
+      #searchInput
+      type="text"
+      placeholder="e.g. Berlin, New York, Tokyo"
+      (keyup.enter)="onSearchCity(searchInput.value)"
+    />
+    <button type="submit">
+      Search
+    </button>
+
+    <button
+      type="button"
+      class="geo-btn"
+      (click)="detectMyLocation()"
+      [disabled]="locationLoading"
+    >
+      @if (!locationLoading) {
+        📍 Use my location
+      } @else {
+        Detecting…
+      }
+    </button>
+  </form>
+
+  @if (locationMessage) {
+    <p class="location-message">
+      {{ locationMessage }}
+    </p>
+  }
+
+  <!-- Search feedback -->
+  @if (searchLoading) {
+    <p class="search-message">
+      Searching…
+    </p>
+  } @else if (searchError) {
+    <p class="search-message search-message-error">
+      {{ searchError }}
+    </p>
+  } @else if (searchMessage) {
+    <p class="search-message">
+      {{ searchMessage }}
+    </p>
+  }
+
+  <!-- Search results list -->
+  @if (searchResults.length > 0) {
+    <ul class="search-results">
+      @for (city of searchResults; track city.id) {
+        <li>
+          <button
+            type="button"
+            class="search-result-btn"
+            (click)="useSearchResult(city)"
+          >
+            {{ city.name }}
+            @if (city.country) {
+              <span class="search-result-meta">
+                ({{ city.country }})
+              </span>
+            }
+          </button>
+        </li>
+      }
+    </ul>
+  }
+
+  <!-- MAIN CARD STATE -->
+  @if (loading) {
+    <div class="card card-loading">
+      <p>Loading air quality data...</p>
+    </div>
+  } @else if (error) {
+    <div class="card card-error">
+      <h2>Error</h2>
+      <p>{{ error }}</p>
+    </div>
+  } @else {
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h2>{{ cityName }}</h2>
+          @if (lastUpdated) {
+            <p class="subtitle">
+              Last updated: {{ lastUpdated }}
+            </p>
+          }
+        </div>
+
+        <!-- FAVORITES BUTTON -->
+        <button class="fav-btn" type="button" (click)="toggleFavorite()">
+          @if (isCurrentFavorite) {
+            ★ Remove favorite
+          } @else {
+            ☆ Add to favorites
+          }
+        </button>
+      </div>
+
+      <div class="values">
+        <div class="value">
+          <span class="label">PM10</span>
+          <span class="number">
+            {{ pm10 }}<span class="unit"> µg/m³</span>
+          </span>
+        </div>
+
+        <div class="value">
+          <span class="label">PM2.5</span>
+          <span class="number">
+            {{ pm25 }}<span class="unit"> µg/m³</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Mini history text -->
+      @if (pm25History.length > 1 && pm25Min !== null && pm25Max !== null) {
+        <p class="subtitle">
+          PM2.5 last hours
+          {{ pm25Min | number:'1.0-1' }}–{{ pm25Max | number:'1.0-1' }} µg/m³
+        </p>
+      }
+
+      <!-- Sparkline chart -->
+      @if (pm25History.length > 1 && sparklinePoints) {
+        <div class="chart-section">
+          <div class="chart-header">
+            <span class="chart-title">PM2.5 trend (last hours)</span>
+            <span class="chart-range">
+              {{ pm25Min | number:'1.0-1' }}–{{ pm25Max | number:'1.0-1' }} µg/m³
+            </span>
+          </div>
+
+          <svg
+            class="sparkline"
+            viewBox="0 0 100 40"
+            preserveAspectRatio="none"
+          >
+            <polyline
+              class="sparkline-line"
+              [attr.points]="sparklinePoints"
+            ></polyline>
+
+            <line
+              class="sparkline-baseline"
+              x1="0"
+              y1="40"
+              x2="100"
+              y2="40"
+            ></line>
+          </svg>
+        </div>
+      }
+
+      @if (statusLabel) {
+        <div class="status">
+          <span class="status-pill {{ statusClass }}">
+            {{ statusLabel }}
+          </span>
+
+          @if (statusAdvice) {
+            <p class="status-advice">
+              {{ statusAdvice }}
+            </p>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  <!-- FAVORITES LIST ON HOME -->
+  @if (favorites.length > 0) {
+    <div class="favorites">
+      <h3>⭐ Favorite locations</h3>
+
+      <ul>
+        @for (fav of favorites; track fav.id) {
+          <li class="fav-chip">
+            <button
+              type="button"
+              class="fav-chip-main"
+              (click)="useFavorite(fav)"
+            >
+              <span class="fav-chip-icon">★</span>
+              <span class="fav-chip-label">
+                {{ fav.label }}
+              </span>
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</div>

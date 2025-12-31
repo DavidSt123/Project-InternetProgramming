@@ -1,0 +1,80 @@
+<div class="favorites-page">
+  <header class="favorites-header">
+    <div class="favorites-icon">★</div>
+    <div>
+      <h1>Favorite locations</h1>
+      <p class="favorites-subtitle">
+        Quick access to the places you care about most.
+      </p>
+    </div>
+  </header>
+
+  @if (loading) {
+    <p class="favorites-info">Loading favorites...</p>
+  } @else if (error) {
+    <p class="favorites-info favorites-info-error">
+      {{ error }}
+    </p>
+  } @else if (!favorites.length) {
+    <p class="favorites-info">
+      You don't have any favorites yet. Go to the Home page and add one.
+    </p>
+  } @else {
+    <ul class="favorites-list">
+      @for (fav of favorites; track fav.id) {
+        <li class="favorite-card">
+          <div class="favorite-main">
+            <h2 class="favorite-name">
+              {{ fav.label }}
+            </h2>
+
+            <!-- Air quality summary for this favorite -->
+            @if (fav.loadingData) {
+              <p class="favorite-meta">Loading air data…</p>
+            } @else if (fav.dataError) {
+              <p class="favorite-meta favorite-meta-error">
+                {{ fav.dataError }}
+              </p>
+            } @else if (fav.pm10 != null && fav.pm25 != null) {
+              <p class="favorite-meta">
+                PM10:
+                <span class="favorite-value">
+                  {{ fav.pm10 | number:'1.0-1' }} µg/m³
+                </span>
+                ·
+                PM2.5:
+                <span class="favorite-value">
+                  {{ fav.pm25 | number:'1.0-1' }} µg/m³
+                </span>
+              </p>
+
+              @if (fav.lastUpdated) {
+                <p class="favorite-meta favorite-meta-small">
+                  Last updated: {{ fav.lastUpdated }}
+                </p>
+              }
+            }
+          </div>
+
+          <div class="favorite-actions">
+            <button
+              type="button"
+              class="fav-btn-secondary"
+              (click)="openOnHome(fav)"
+            >
+              Open on Home
+            </button>
+
+            <button
+              type="button"
+              class="fav-btn-danger"
+              (click)="removeFavorite(fav)"
+            >
+              Remove
+            </button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</div>

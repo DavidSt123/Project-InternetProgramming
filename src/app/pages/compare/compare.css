@@ -1,0 +1,258 @@
+/* ===== Layout wrapper ===== */
+
+.compare-page {
+  max-width: 960px;
+  margin: 2.5rem auto 3rem;
+  padding: 0 1.5rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.compare-page h1 {
+  margin-bottom: 0.25rem;
+  font-size: 2.1rem;
+}
+
+.compare-page .subtitle {
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* ===== Search rows (top & bottom city) ===== */
+
+.selectors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.selector label {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.search-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-row input[type="text"] {
+  flex: 1 1 220px;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+  background-color: #fff;
+}
+
+.search-row button[type="submit"] {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #f39c12;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    background 0.12s ease,
+    box-shadow 0.12s ease,
+    transform 0.08s ease;
+}
+
+.search-row button[type="submit"]:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Search messages */
+
+.search-info {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0.15rem 0 0.3rem;
+}
+
+.search-info-error {
+  color: #b71c1c;
+}
+
+/* Search results for each side */
+
+.search-results {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 0.5rem;
+}
+
+.search-results li {
+  margin-bottom: 0.25rem;
+}
+
+.search-result-button {
+  border: 1px solid #f1e4ff;
+  background: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    transform 0.08s ease;
+}
+
+.search-result-button:hover {
+  background: #fdf5ff;
+  border-color: #e0c2ff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.search-result-name {
+  font-weight: 500;
+}
+
+.search-result-country {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* ===== Comparison summary ===== */
+
+.comparison-summary {
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.comparison-summary p {
+  margin: 0;
+}
+
+.comparison-numbers {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* ===== City cards ===== */
+
+.city-block {
+  margin-top: 1.5rem;
+}
+
+.city-block-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+/* Card style reused from Home */
+
+.card {
+  margin-top: 0.25rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.card-loading {
+  opacity: 0.9;
+}
+
+.card-error {
+  border-left: 4px solid #b71c1c;
+  background: #fdecea;
+}
+
+.small-subtitle {
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Values row */
+
+.values {
+  display: flex;
+  gap: 2rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.value .label {
+  display: block;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.value .number {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.value .unit {
+  font-size: 0.9rem;
+  margin-left: 0.1rem;
+}
+
+/* Status pill */
+
+.status {
+  margin-top: 0.75rem;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.status-good {
+  background: #e0f7e9;
+  color: #1b5e20;
+}
+
+.status-moderate {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-usg {
+  background: #ffe0b2;
+  color: #e65100;
+}
+
+.status-unhealthy {
+  background: #fdecea;
+  color: #b71c1c;
+}
+
+/* ===== Responsive tweaks ===== */
+
+@media (max-width: 700px) {
+  .card {
+    padding: 1.25rem 1.25rem;
+  }
+}

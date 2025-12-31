@@ -1,0 +1,54 @@
+.app-root {
+  min-height: 100vh;
+  background: #fff7f4; /* same background as pages */
+}
+
+/* Top navigation bar */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 2rem;
+  background: #fffdfb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.logo {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  font-size: 0.95rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: #555;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* Active route pill */
+.nav-links a.active {
+  background: #ffeaa7;
+  color: #2d3436;
+  font-weight: 500;
+}
+
+/* Where routed pages live */
+.app-content {
+  padding: 1.5rem 0 2rem 0;
+}

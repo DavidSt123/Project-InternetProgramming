@@ -1,0 +1,408 @@
+/* ===== Layout wrapper ===== */
+
+.page {
+  max-width: 960px;
+  margin: 2.5rem auto 3rem;
+  padding: 0 1.5rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+h1 {
+  margin-bottom: 1.25rem;
+  text-align: left;
+  font-size: 2.1rem;
+}
+
+/* ===== Search any city + location ===== */
+
+.search-any-city {
+  margin-bottom: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.search-any-city label {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.search-any-city input {
+  flex: 1 1 260px;
+  padding: 0.4rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+  background-color: #fff;
+}
+
+.search-any-city button[type="submit"] {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #f39c12; /* orange */
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    background 0.12s ease,
+    box-shadow 0.12s ease,
+    transform 0.08s ease;
+}
+
+.search-any-city button[type="submit"]:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+/* 📍 Use my location button */
+
+.geo-btn {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: #ffeaa7;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  transition:
+    background 0.12s ease,
+    box-shadow 0.12s ease,
+    transform 0.08s ease;
+}
+
+.geo-btn:hover:enabled {
+  background: #ffda79;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.geo-btn:disabled {
+  opacity: 0.7;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* Location + search messages */
+
+.location-message {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.search-message {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.search-message-error {
+  color: #b71c1c;
+}
+
+/* Search results under the input */
+
+.search-results {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 0.75rem;
+}
+
+.search-results li {
+  margin-bottom: 0.25rem;
+}
+
+.search-result-btn {
+  border: 1px solid #f1e4ff;
+  background: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    transform 0.08s ease;
+}
+
+.search-result-btn:hover {
+  background: #fdf5ff;
+  border-color: #e0c2ff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.search-result-meta {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* ===== Main card ===== */
+
+.card {
+  margin-top: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.card-loading {
+  opacity: 0.9;
+}
+
+.card-error {
+  border-left: 4px solid #b71c1c;
+  background: #fdecea;
+}
+
+/* Header inside the card */
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card-header h2 {
+  margin: 0;
+}
+
+.subtitle {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Favorite button */
+
+.fav-btn {
+  border: none;
+  background: #ffeaa7;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition:
+    background 0.1s ease,
+    box-shadow 0.1s ease,
+    transform 0.1s ease;
+}
+
+.fav-btn:hover {
+  background: #ffda79;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Values row */
+
+.values {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.value {
+  min-width: 120px;
+}
+
+.value .label {
+  display: block;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.value .number {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.value .unit {
+  font-size: 0.9rem;
+  margin-left: 0.1rem;
+}
+
+/* Status + advice */
+
+.status {
+  margin-top: 1rem;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.status-good {
+  background: #e0f7e9;
+  color: #1b5e20;
+}
+
+.status-moderate {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-usg {
+  background: #ffe0b2;
+  color: #e65100;
+}
+
+.status-unhealthy {
+  background: #fdecea;
+  color: #b71c1c;
+}
+
+.status-advice {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: #555;
+  max-width: 520px;
+}
+
+/* ===== Small PM2.5 chart ===== */
+
+.chart-section {
+  margin-top: 1.25rem;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.chart-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.chart-range {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.sparkline {
+  width: 100%;
+  height: 70px;
+  display: block;
+  border-radius: 10px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.02),
+    transparent
+  );
+}
+
+.sparkline-line {
+  fill: none;
+  stroke: #e67e22;
+  stroke-width: 1.8;
+}
+
+.sparkline-baseline {
+  stroke: rgba(0, 0, 0, 0.06);
+  stroke-width: 0.5;
+}
+
+/* ===== Favorites list ===== */
+
+.favorites {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.favorites h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1rem;
+}
+
+.favorites ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.fav-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fav-chip-main {
+  border: 1px solid #f1e4ff;
+  background: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    transform 0.08s ease;
+}
+
+.fav-chip-main:hover {
+  background: #fdf5ff;
+  border-color: #e0c2ff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.fav-chip-icon {
+  font-size: 0.8rem;
+}
+
+.fav-chip-label {
+  white-space: nowrap;
+}
+
+/* ===== Responsive tweaks ===== */
+
+@media (max-width: 700px) {
+  .card {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fav-btn {
+    align-self: flex-start;
+  }
+}

@@ -1,0 +1,207 @@
+<div class="compare-page">
+  <h1>Compare air quality</h1>
+  <p class="subtitle">
+    Search any two cities in the world and compare their latest PM10 and PM2.5 values.
+  </p>
+
+  <!-- Search rows for TOP and BOTTOM cities -->
+  <div class="selectors">
+    <!-- TOP city search -->
+    <div class="selector">
+      <label for="top-city-input">Top city</label>
+      <form
+        class="search-row"
+        (submit)="onSearchCity('top', topSearchInput.value); $event.preventDefault()"
+      >
+        <input
+          id="top-city-input"
+          #topSearchInput
+          type="text"
+          placeholder="e.g. Skopje, Berlin, Tokyo"
+          (keyup.enter)="onSearchCity('top', topSearchInput.value)"
+        />
+        <button type="submit">
+          Search
+        </button>
+      </form>
+
+      @if (topSearchLoading) {
+        <p class="search-info">Searching…</p>
+      } @else if (topSearchError) {
+        <p class="search-info search-info-error">{{ topSearchError }}</p>
+      } @else if (topSearchMessage) {
+        <p class="search-info">{{ topSearchMessage }}</p>
+      }
+
+      @if (topSearchResults.length > 0) {
+        <ul class="search-results">
+          @for (city of topSearchResults; track city.id) {
+            <li>
+              <button
+                type="button"
+                class="search-result-button"
+                (click)="useSearchResult('top', city)"
+              >
+                <span class="search-result-name">{{ city.name }}</span>
+                @if (city.country) {
+                  <span class="search-result-country">
+                    ({{ city.country }})
+                  </span>
+                }
+              </button>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+
+    <!-- BOTTOM city search -->
+    <div class="selector">
+      <label for="bottom-city-input">Bottom city</label>
+      <form
+        class="search-row"
+        (submit)="onSearchCity('bottom', bottomSearchInput.value); $event.preventDefault()"
+      >
+        <input
+          id="bottom-city-input"
+          #bottomSearchInput
+          type="text"
+          placeholder="e.g. London, New York, Sydney"
+          (keyup.enter)="onSearchCity('bottom', bottomSearchInput.value)"
+        />
+        <button type="submit">
+          Search
+        </button>
+      </form>
+
+      @if (bottomSearchLoading) {
+        <p class="search-info">Searching…</p>
+      } @else if (bottomSearchError) {
+        <p class="search-info search-info-error">{{ bottomSearchError }}</p>
+      } @else if (bottomSearchMessage) {
+        <p class="search-info">{{ bottomSearchMessage }}</p>
+      }
+
+      @if (bottomSearchResults.length > 0) {
+        <ul class="search-results">
+          @for (city of bottomSearchResults; track city.id) {
+            <li>
+              <button
+                type="button"
+                class="search-result-button"
+                (click)="useSearchResult('bottom', city)"
+              >
+                <span class="search-result-name">{{ city.name }}</span>
+                @if (city.country) {
+                  <span class="search-result-country">
+                    ({{ city.country }})
+                  </span>
+                }
+              </button>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+
+  <!-- High-level comparison sentence -->
+  @if (summarySentence && pm25Difference !== null) {
+    <div class="comparison-summary">
+      <p>{{ summarySentence }}</p>
+      <div class="comparison-numbers">
+        PM2.5 difference: {{ pm25Difference | number:'1.0-1' }} µg/m³
+      </div>
+    </div>
+  }
+
+  <!-- TOP CITY CARD -->
+  <section class="city-block">
+    <h2 class="city-block-title">
+      {{ topCityLabel }}
+    </h2>
+
+    @if (top.loading) {
+      <div class="card card-loading">Loading...</div>
+    } @else if (top.error) {
+      <div class="card card-error">
+        <p>{{ top.error }}</p>
+      </div>
+    } @else {
+      <div class="card">
+        <p class="small-subtitle">
+          Last updated: {{ top.lastUpdated }}
+        </p>
+
+        <div class="values">
+          <div class="value">
+            <span class="label">PM10</span>
+            <span class="number">
+              {{ top.pm10 }}<span class="unit"> µg/m³</span>
+            </span>
+          </div>
+
+          <div class="value">
+            <span class="label">PM2.5</span>
+            <span class="number">
+              {{ top.pm25 }}<span class="unit"> µg/m³</span>
+            </span>
+          </div>
+        </div>
+
+        @if (top.statusLabel) {
+          <div class="status">
+            <span class="status-pill {{ top.statusClass }}">
+              {{ top.statusLabel }}
+            </span>
+          </div>
+        }
+      </div>
+    }
+  </section>
+
+  <!-- BOTTOM CITY CARD -->
+  <section class="city-block">
+    <h2 class="city-block-title">
+      {{ bottomCityLabel }}
+    </h2>
+
+    @if (bottom.loading) {
+      <div class="card card-loading">Loading...</div>
+    } @else if (bottom.error) {
+      <div class="card card-error">
+        <p>{{ bottom.error }}</p>
+      </div>
+    } @else {
+      <div class="card">
+        <p class="small-subtitle">
+          Last updated: {{ bottom.lastUpdated }}
+        </p>
+
+        <div class="values">
+          <div class="value">
+            <span class="label">PM10</span>
+            <span class="number">
+              {{ bottom.pm10 }}<span class="unit"> µg/m³</span>
+            </span>
+          </div>
+
+          <div class="value">
+            <span class="label">PM2.5</span>
+            <span class="number">
+              {{ bottom.pm25 }}<span class="unit"> µg/m³</span>
+            </span>
+          </div>
+        </div>
+
+        @if (bottom.statusLabel) {
+          <div class="status">
+            <span class="status-pill {{ bottom.statusClass }}">
+              {{ bottom.statusLabel }}
+            </span>
+          </div>
+        }
+      </div>
+    }
+  </section>
+</div>
